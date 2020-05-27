@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button size="small" shape="round" color="medium" (click)="notifications()">
+        <ion-icon name="notifications"></ion-icon>
+        <ion-badge color="dark" slot="end">2</ion-badge>
+      </ion-button>
+      <ion-button slot="icon-only" (click)="logout()">
+        <ion-icon sloat="start" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="searchFilter()">
+        <ion-icon name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="isLoading" type="indeterminate" color="primary" value="0.25" buffer="0.5"></ion-progress-bar>
+  <h1 *ngIf="!isLoading">Welcome, MR. {{ name }}</h1>
+  <div *ngIf="modules.length > 0 && !isLoading">
+    <ion-row>
+      <ion-col size="12" *ngFor="let module of modules">
+        <ion-card>
+          <ion-item>
+            <ion-label>{{ module.name }}</ion-label>
+            <ion-button [routerLink]="['/modules/', module.id]" fill="outline" slot="end">View</ion-button>
+          </ion-item>
+          <ion-card-content>
+            {{ module.description }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-row>
+    <ion-col size="4">
+    <ion-card class="bg-white">
+      <ion-img src="assets/res/students.png"></ion-img>
+      <ion-button expand="full" color="dark ion-no-margin" [routerLink]="['/students']">
+        Etudiants
+      </ion-button>
+    </ion-card>
+    </ion-col>
+    <ion-col size="4">
+    <ion-card class="bg-white">
+      <ion-img src="assets/res/branchs.png"></ion-img>
+      <ion-button expand="full" color="dark ion-no-margin" (click)="presentImage(themeCover)">
+        Filiéres
+      </ion-button>
+    </ion-card>
+    </ion-col>
+    <ion-col size="4">
+    <ion-card class="bg-white">
+      <ion-img src="assets/res/subjects.png"></ion-img>
+      <ion-button expand="full" color="dark ion-no-margin" (click)="presentImage(themeCover)">
+        Modules
+      </ion-button>
+    </ion-card>
+    </ion-col>
+    <ion-col size="4">
+    <ion-card class="bg-white">
+      <ion-img src="assets/res/mark.png"></ion-img>
+      <ion-button expand="full" color="dark ion-no-margin" (click)="presentImage(themeCover)">
+        Mark attendance
+      </ion-button>
+    </ion-card>
+    </ion-col>
+    <ion-col size="4">
+    <ion-card class="bg-white">
+      <ion-img src="assets/res/classes.png"></ion-img>
+      <ion-button expand="full" color="dark ion-no-margin" [routerLink]="['/seances']">
+        Séances
+      </ion-button>
+    </ion-card>
+    </ion-col>
+    <ion-col size="4">
+    <ion-card class="bg-white">
+      <ion-img src="assets/res/attendance.png"></ion-img>
+      <ion-button expand="full" color="dark ion-no-margin" (click)="presentImage(themeCover)">
+        Absences
+      </ion-button>
+    </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

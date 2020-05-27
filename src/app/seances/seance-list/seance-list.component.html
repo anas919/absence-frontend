@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Séances</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+	<ion-progress-bar *ngIf="isLoading" type="indeterminate" color="primary" value="0.25" buffer="0.5"></ion-progress-bar>
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+		<ion-fab-button (click)="createSeance()">
+			<ion-icon name="add"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- List of Sliding Items -->
+	<ion-list *ngFor="let seance of seances">
+		<ion-item-sliding>
+		    <ion-item-options side="start">
+		      <ion-item-option (click)="updateSeance(seance.id)">Editer</ion-item-option>
+		      <ion-item-option color="danger" (click)="deleteSeance(seance.id)">Supprimer</ion-item-option>
+		    </ion-item-options>
+
+		    <ion-item [routerLink]="['/seances/', seance.id]">
+		    	<ion-avatar slot="start">
+					<img src="assets/icon/favico.jpg">
+				</ion-avatar>
+		    	<ion-label>
+				  	<h1>{{ seance.module }}</h1>
+				  	<div class="seance-details">
+						<span class="space-left">from </span>
+						<ion-icon color="primary" name="calendar"></ion-icon>
+						<ion-text class="space-left" color="tertiary">{{ seance.date }}</ion-text><br>
+						<!-- <span class="space-left">to </span>
+						<ion-icon color="primary" name="calendar" class="space-left"></ion-icon>
+						<ion-text class="space-left" color="tertiary">{{ seance.updated_at }}</ion-text> -->
+				  	</div>
+				</ion-label>
+		    </ion-item>
+
+		    <ion-item-options side="end">
+		      <ion-item-option [routerLink]="['/seances/', seance.id]">Noter Absence</ion-item-option>
+		    </ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+	<!-- End - List of Sliding Items -->
+</ion-content>

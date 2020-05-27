@@ -1,0 +1,7 @@
+{
+  "name": "absence-mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

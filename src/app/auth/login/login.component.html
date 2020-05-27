@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+        Log-in
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding animated fadeIn login auth-page">
+<div class="theme-bg"></div>
+  <div class="auth-content">
+
+    <!-- Logo -->
+    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+      <div class="logo"></div>
+      <h4 class="no-margin">
+        <ion-text color="light" class="fw700">
+          Absence FP Taza
+        </ion-text>
+      </h4>
+    </div>
+  <form [formGroup]="user" (ngSubmit)="login()" class="list-form">
+    <ion-item class="no-padding animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="mail" item-start></ion-icon>
+        Email
+      </ion-label>
+      <ion-input color="secondary" formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <p ion-text class="text08" *ngIf="user.get('email').touched && user.get('email').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+    <ion-item class="no-padding animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="lock" item-start></ion-icon>
+        Password
+      </ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <p ion-text color="warning" class="text08" *ngIf="user.get('password').touched && user.get('password').hasError('required')">
+      <ion-text color="warning">
+        Required Field
+      </ion-text>
+    </p>
+    <ion-button icon-left size="medium" expand="full" shape="round" color="dark" type="submit" [disabled]="user.invalid" tappable>Login</ion-button>
+  </form>
+</div>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Noter Absence</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-progress-bar *ngIf="isLoading" type="indeterminate" color="primary" value="0.25" buffer="0.5"></ion-progress-bar>
+	<ion-grid *ngIf="students.length > 0">
+		<ion-row>
+			<ion-col size="12">
+				<ion-list *ngFor="let student of students">
+					<ion-item>
+						<ion-avatar slot="start">
+							<img [src]="student.avatar" [alt]="student.name">
+						</ion-avatar>
+						<ion-label>{{ student.name }}</ion-label>
+						<ion-label class="ion-text-right"><mat-slide-toggle [(ngModel)]="student.is_absent" (change)="markStudent(student.id, student.is_absent)">{{student.is_absent ? 'Absent' : 'Present'}}</mat-slide-toggle></ion-label>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="full" size="meduim" color="primary" *ngIf="students.length > 0" (click)="saveMarkedStudents()">
+			Save
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>
